@@ -1,0 +1,7 @@
+{
+  "name": "arrival call v3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
