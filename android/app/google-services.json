@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "683774245049",
+    "firebase_url": "https://arrivalcall.firebaseio.com",
+    "project_id": "arrivalcall",
+    "storage_bucket": "arrivalcall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683774245049:android:69f0f0aca548279da44368",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683774245049-luml6l1lntbectuc3ri88e5bncr9a2jf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqxDX016Pjn6xo8t_H2ibqH2rlyfw-ZoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683774245049-luml6l1lntbectuc3ri88e5bncr9a2jf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

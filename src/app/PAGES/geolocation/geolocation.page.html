@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>confirm</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-toolbar>
+  <ion-button (click)="getMyLocation()">GeLocation</ion-button>
+  <ion-button *ngIf="currentLocation" (click)="addGeofence(currentLocation)">Set fence at {{currentLocation.coords.latitude}}</ion-button>
+ <ion-button (click)="presentAlert()">A</ion-button>
+</ion-toolbar>
+
+<ion-content>
+  <ion-item *ngIf="myFence">
+    <ion-text>Set up fence with: {{myFence.latitude}} and radius {{myFence.radius}}</ion-text>
+  </ion-item>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            Success
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+         Failiures
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+          geofences
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngIf="success">
+          <div *ngFor="let s of success">{{s}}</div>
+        </ion-col>
+        <ion-col *ngIf="errors">
+          <div *ngFor="let s of errors">{{s}}</div>
+        </ion-col>
+        <ion-col *ngIf="geoFences">
+          <div *ngFor="let s of geoFences">{{s}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card *ngIf="movingLocations">
+    <div>Number: {{locationsLength}}</div>
+    <div *ngFor="let i of movingLocations">
+      lat: {{i.coords.latititude}}
+      lng: {{i.coords.longitude}}
+    </div>
+    
+  </ion-card>
+  <ion-card *ngIf="geoFences">
+   Geofences:{{geoLength}}
+    <div *ngFor="let g of geoFences">{{g}}</div>
+  </ion-card>
+  <ion-card>
+   watch geos
+   <div *ngIf="geoWatch">
+     <div *ngFor="let g of geoWatch">{{g}}</div>
+   </div>    
+  </ion-card>
+
+</ion-content>
