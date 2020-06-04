@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import{} from 'google-maps'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { ApiService } from 'src/app/SERVICES/api.service';
+import { GeofenceCalculatorService } from 'src/app/SERVICES/geofence-calculator.service';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +16,11 @@ showAction: boolean;
 service: any;
 map: any;
 infowindow: any;
+locationsPacket :any []=[];
 
 @ViewChild('map',{static: false}) mapElement: ElementRef
 
-  constructor(private geoLocation: Geolocation) { }
+  constructor(private geoLocation: Geolocation, private api: ApiService) { }
 
   ngOnInit() {
   }
@@ -29,9 +32,12 @@ infowindow: any;
    // console.log('test me ')
     this.geoLocation.getCurrentPosition()
     .then((resp)=>{
-      
+      let myOb = {}
       let lat = resp.coords.latitude;
       let lng = resp.coords.longitude;
+      myOb = {origin: {lat:lat, lng: lng}}
+      this.locationsPacket.push(myOb)
+
       this.initializeMap(lat, lng);
 
     }).catch((error)=>{
@@ -86,7 +92,17 @@ infowindow: any;
     };
     this.service.getDetails(request,(result, status)=>{
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(result.formatted_address)
+       // console.log('location ', result.geometry.location.lat())
+        let myOb ={}
+        let lat = result.geometry.location.lat();
+        let lng = result.geometry.location.lng();
+        myOb ={destination: {lat, lng}};
+        this.locationsPacket.push(myOb);
+
+        this.api.postResource('trips', this.locationsPacket).subscribe(resp=>{
+          console.log('resp? ', resp)
+        })
+
       }
 
     })
