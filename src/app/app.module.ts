@@ -11,8 +11,9 @@ import { AppComponent } from './app.component';
 
 //restagular
 import{RestangularModule} from 'ngx-restangular'
-import { restangularConfigFactory } from './shared/restangular.config';
+import { restangularConfigFactory } from './SHARED/restangular.config';
 import { HTTP } from '@ionic-native/http/ngx';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HTTP } from '@ionic-native/http/ngx';
   imports: [BrowserModule, 
     IonicModule.forRoot(),
      AppRoutingModule,
-    RestangularModule.forRoot(restangularConfigFactory)],
+    RestangularModule.forRoot(restangularConfigFactory),
+     IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,

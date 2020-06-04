@@ -3,6 +3,7 @@ import{} from 'google-maps'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ApiService } from 'src/app/SERVICES/api.service';
 import { GeofenceCalculatorService } from 'src/app/SERVICES/geofence-calculator.service';
+import { StorageService } from 'src/app/SERVICES/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +11,19 @@ import { GeofenceCalculatorService } from 'src/app/SERVICES/geofence-calculator.
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  places: any [];
-  markers: any [] =[];
+places: any [];
+markers: any [] =[];
 showAction: boolean;
 service: any;
 map: any;
 infowindow: any;
 locationsPacket :any []=[];
+trip: any [];
 
 @ViewChild('map',{static: false}) mapElement: ElementRef
 
-  constructor(private geoLocation: Geolocation, private api: ApiService) { }
+  constructor(private geoLocation: Geolocation, private api: ApiService,
+    private storage: StorageService) { }
 
   ngOnInit() {
   }
@@ -100,7 +103,13 @@ locationsPacket :any []=[];
         this.locationsPacket.push(myOb);
 
         this.api.postResource('trips', this.locationsPacket).subscribe(resp=>{
-          console.log('resp? ', resp)
+          this.trip = resp
+          this.storage.saveTrip(this.trip)
+          this.storage.getTrips().then(function(resp){
+            console.log('saved trips ', resp)
+
+          })
+
         })
 
       }
