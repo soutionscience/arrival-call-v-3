@@ -23,7 +23,7 @@ export class GeofenceCalculatorService {
  // }
   async getData() {
     try {
-      let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=-1.254445,36.775298&destinations=-1.261332,36.798153&language=fr-FR&key=AIzaSyCeaJfi89zeC-wzhEXtrlgnwRT4_VL5Fsc'
+      let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=-1.254445,36.775298&destinations=-1.261332,36.798153&language=fr-FR&key=APIKEY'
       const params = {};
       const headers = {};
 
